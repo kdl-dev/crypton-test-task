@@ -112,7 +112,7 @@ func initDependency() {
 		DBName: os.Getenv("DB_NAME"),
 	})
 	if err != nil {
-		log.Fatalf("Could not connect to database: %s", err.Error())
+		log.Fatalf("could not connect to database: %s", err.Error())
 	}
 
 	repos = repository.NewRepository(db)
@@ -126,8 +126,8 @@ func ValidatePort(port string) error {
 		return err
 	}
 
-	if validPort < 1024 && validPort > 65535 {
-		return errors.New("")
+	if validPort < 1024 || validPort > 65535 {
+		return errors.New("invalid port value. The expected value is in the range [1024; 65535]")
 	}
 
 	return nil
